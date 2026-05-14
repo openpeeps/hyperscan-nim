@@ -23,17 +23,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt-get install -y cmake build-essential libboost-dev libpcre3-dev ragel liblzma-dev zlib1g-dev
-
-      - name: Clone Hyperscan
-        run: |
-          git clone https://github.com/intel/hyperscan
-          cd hyperscan
-          mkdir build && cd build
-          cmake ..
-          make -j$(nproc)
-          sudo make install
-
+        run: sudo apt-get install -y libhyperscan-dev
+      
       - uses: jiro4989/setup-nim-action@v1
         with:
           nim-version: ${{ matrix.nim-version }}
