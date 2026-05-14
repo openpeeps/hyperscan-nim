@@ -8,12 +8,12 @@
 </p>
 
 <p align="center">
-  <a href="https://openpeeps.github.io/hyperscan">API reference</a><br>
+  <a href="https://openpeeps.github.io/hyperscan-nim">API reference</a><br>
   <img src="https://github.com/openpeeps/hyperscan/workflows/test/badge.svg" alt="Github Actions">  <img src="https://github.com/openpeeps/hyperscan/workflows/docs/badge.svg" alt="Github Actions">
 </p>
 
 ## About Intel's Hyperscan
-Hyperscan is a high-performance regular expression matching library capable of scanning data at high speeds. It is used as a critical engine within network security, and Deep Packet Inspection (DPI) applications to search for large sets of patterns simultaneously across streaming data. [Readh the Introduction to Hyperscan](https://www.intel.com/content/www/us/en/developer/articles/technical/introduction-to-hyperscan.html)
+Hyperscan is a high-performance regular expression matching library capable of scanning data at high speeds. It is used as a critical engine within network security, and Deep Packet Inspection (DPI) applications to search for large sets of patterns simultaneously across streaming data. [Read the Introduction to Hyperscan](https://www.intel.com/content/www/us/en/developer/articles/technical/introduction-to-hyperscan.html)
 
 Check out the [official repository](https://github.com/intel/hyperscan)
 
@@ -23,7 +23,7 @@ This Nim package provides:
 
 ## Examples
 
-Here is an example using the high-level API:
+Here is an example using the **high-level API**:
 ```nim
 import hyperscan
 
@@ -49,7 +49,7 @@ discard db2.scan(data) do (id: cuint, fromOffset, toOffset: culonglong) -> bool:
   return true
 ```
 
-Here is an example using the low-level API to compile a pattern, scan some data, and handle matches:
+Here is an example using the **low-level API** to compile a pattern, scan some data, and handle matches:
 ```nim
 import hyperscan/bindings
 
@@ -92,6 +92,8 @@ else:
 discard hs_free_scratch(scratch)
 discard hs_free_database(db)
 ```
+
+Check out the [tests](https://github.com/openpeeps/hyperscan-nim/tree/main/tests) directory for more examples.
 
 ### ❤ Contributions & Support
 - 🐛 Found a bug? [Create a new Issue](https://github.com/openpeeps/hyperscan/issues)
