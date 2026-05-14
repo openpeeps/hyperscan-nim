@@ -1,0 +1,30 @@
+nimTitle	hyperscan	hyperscan.html	module hyperscan		0
+nim	Database	hyperscan.html#Database	type Database		14
+nim	Scratch	hyperscan.html#Scratch	type Scratch		19
+nim	Stream	hyperscan.html#Stream	type Stream		25
+nim	Pattern	hyperscan.html#Pattern	object Pattern		27
+nim	MatchCallback	hyperscan.html#MatchCallback	type MatchCallback		32
+nim	HsException	hyperscan.html#HsException	object HsException		35
+nim	version	hyperscan.html#version	proc version(): string		51
+nim	validPlatform	hyperscan.html#validPlatform	proc validPlatform()		55
+nim	compile	hyperscan.html#compile,string,cuint,cuint	proc compile(pattern: string; flags: cuint = 0; mode: cuint = HS_MODE_BLOCK): Database		67
+nim	compile	hyperscan.html#compile,openArray[Pattern],cuint	proc compile(patterns: openArray[Pattern]; mode: cuint = HS_MODE_BLOCK): Database		82
+nim	compileLit	hyperscan.html#compileLit,string,cuint,cuint	proc compileLit(pattern: string; flags: cuint = 0; mode: cuint = HS_MODE_BLOCK): Database		105
+nim	size	hyperscan.html#size,Database	proc size(db: Database): csize_t		120
+nim	info	hyperscan.html#info,Database	proc info(db: Database): string		124
+nim	serialize	hyperscan.html#serialize,Database	proc serialize(db: Database): seq[byte]		130
+nim	deserialize	hyperscan.html#deserialize,openArray[byte]	proc deserialize(data: openArray[byte]): Database		140
+nim	newScratch	hyperscan.html#newScratch,Database	proc newScratch(db: Database): Scratch		155
+nim	clone	hyperscan.html#clone,Scratch	proc clone(s: Scratch): Scratch		160
+nim	size	hyperscan.html#size,Scratch	proc size(s: Scratch): csize_t		165
+nim	scan	hyperscan.html#scan,Database,string,Scratch,MatchCallback	proc scan(db: Database; data: string; scratch: Scratch; cb: MatchCallback): bool		173
+nim	scan	hyperscan.html#scan,Database,string,MatchCallback	proc scan(db: Database; data: string; cb: MatchCallback): bool		189
+nim	openStream	hyperscan.html#openStream,Database,Scratch	proc openStream(db: Database; scratch: Scratch): Stream		202
+nim	scan	hyperscan.html#scan,Stream,string,MatchCallback	proc scan(stream: Stream; data: string; cb: MatchCallback): bool		209
+nim	close	hyperscan.html#close,Stream,MatchCallback	proc close(stream: Stream; cb: MatchCallback = nil)		223
+nim	reset	hyperscan.html#reset,Stream,MatchCallback	proc reset(stream: Stream; cb: MatchCallback = nil)		237
+nim	ExpressionInfo	hyperscan.html#ExpressionInfo	object ExpressionInfo		255
+nim	expressionInfo	hyperscan.html#expressionInfo,string,cuint	proc expressionInfo(pattern: string; flags: cuint = 0): ExpressionInfo		261
+nimgrp	scan	hyperscan.html#scan-procs-all	proc		173
+nimgrp	size	hyperscan.html#size-procs-all	proc		120
+nimgrp	compile	hyperscan.html#compile-procs-all	proc		67

@@ -1,0 +1,111 @@
+nimTitle	bindings	hyperscan/bindings.html	module hyperscan/bindings		0
+nim	HsDatabase	hyperscan/bindings.html#HsDatabase	object HsDatabase		13
+nim	HsDatabasePtr	hyperscan/bindings.html#HsDatabasePtr	type HsDatabasePtr		14
+nim	HsError	hyperscan/bindings.html#HsError	type HsError		16
+nim	HsAllocFunc	hyperscan/bindings.html#HsAllocFunc	type HsAllocFunc		18
+nim	HsFreeFunc	hyperscan/bindings.html#HsFreeFunc	type HsFreeFunc		19
+nim	HS_SUCCESS	hyperscan/bindings.html#HS_SUCCESS	const HS_SUCCESS		26
+nim	HS_INVALID	hyperscan/bindings.html#HS_INVALID	const HS_INVALID		27
+nim	HS_NOMEM	hyperscan/bindings.html#HS_NOMEM	const HS_NOMEM		28
+nim	HS_SCAN_TERMINATED	hyperscan/bindings.html#HS_SCAN_TERMINATED	const HS_SCAN_TERMINATED		29
+nim	HS_COMPILER_ERROR	hyperscan/bindings.html#HS_COMPILER_ERROR	const HS_COMPILER_ERROR		30
+nim	HS_DB_VERSION_ERROR	hyperscan/bindings.html#HS_DB_VERSION_ERROR	const HS_DB_VERSION_ERROR		31
+nim	HS_DB_PLATFORM_ERROR	hyperscan/bindings.html#HS_DB_PLATFORM_ERROR	const HS_DB_PLATFORM_ERROR		32
+nim	HS_DB_MODE_ERROR	hyperscan/bindings.html#HS_DB_MODE_ERROR	const HS_DB_MODE_ERROR		33
+nim	HS_BAD_ALIGN	hyperscan/bindings.html#HS_BAD_ALIGN	const HS_BAD_ALIGN		34
+nim	HS_BAD_ALLOC	hyperscan/bindings.html#HS_BAD_ALLOC	const HS_BAD_ALLOC		35
+nim	HS_SCRATCH_IN_USE	hyperscan/bindings.html#HS_SCRATCH_IN_USE	const HS_SCRATCH_IN_USE		36
+nim	HS_ARCH_ERROR	hyperscan/bindings.html#HS_ARCH_ERROR	const HS_ARCH_ERROR		37
+nim	HS_INSUFFICIENT_SPACE	hyperscan/bindings.html#HS_INSUFFICIENT_SPACE	const HS_INSUFFICIENT_SPACE		38
+nim	HS_UNKNOWN_ERROR	hyperscan/bindings.html#HS_UNKNOWN_ERROR	const HS_UNKNOWN_ERROR		39
+nim	hs_free_database	hyperscan/bindings.html#hs_free_database,HsDatabasePtr	proc hs_free_database(db: HsDatabasePtr): HsError		47
+nim	hs_serialize_database	hyperscan/bindings.html#hs_serialize_database,HsDatabasePtr,ptr.cstring,ptr.csize_t	proc hs_serialize_database(db: HsDatabasePtr; bytes: ptr cstring; length: ptr csize_t): HsError		48
+nim	hs_deserialize_database	hyperscan/bindings.html#hs_deserialize_database,cstring,csize_t,ptr.HsDatabasePtr	proc hs_deserialize_database(bytes: cstring; length: csize_t; db: ptr HsDatabasePtr): HsError		50
+nim	hs_deserialize_database_at	hyperscan/bindings.html#hs_deserialize_database_at,cstring,csize_t,HsDatabasePtr	proc hs_deserialize_database_at(bytes: cstring; length: csize_t; db: HsDatabasePtr): HsError		52
+nim	hs_stream_size	hyperscan/bindings.html#hs_stream_size,HsDatabasePtr,ptr.csize_t	proc hs_stream_size(database: HsDatabasePtr; stream_size: ptr csize_t): HsError		54
+nim	hs_database_size	hyperscan/bindings.html#hs_database_size,HsDatabasePtr,ptr.csize_t	proc hs_database_size(database: HsDatabasePtr; database_size: ptr csize_t): HsError		56
+nim	hs_serialized_database_size	hyperscan/bindings.html#hs_serialized_database_size,cstring,csize_t,ptr.csize_t	proc hs_serialized_database_size(bytes: cstring; length: csize_t;\n                            deserialized_size: ptr csize_t): HsError		58
+nim	hs_database_info	hyperscan/bindings.html#hs_database_info,HsDatabasePtr,ptr.cstring	proc hs_database_info(database: HsDatabasePtr; info: ptr cstring): HsError		60
+nim	hs_serialized_database_info	hyperscan/bindings.html#hs_serialized_database_info,cstring,csize_t,ptr.cstring	proc hs_serialized_database_info(bytes: cstring; length: csize_t; info: ptr cstring): HsError		62
+nim	hs_set_allocator	hyperscan/bindings.html#hs_set_allocator,HsAllocFunc,HsFreeFunc	proc hs_set_allocator(alloc_func: HsAllocFunc; free_func: HsFreeFunc): HsError		64
+nim	hs_set_database_allocator	hyperscan/bindings.html#hs_set_database_allocator,HsAllocFunc,HsFreeFunc	proc hs_set_database_allocator(alloc_func: HsAllocFunc; free_func: HsFreeFunc): HsError		66
+nim	hs_set_misc_allocator	hyperscan/bindings.html#hs_set_misc_allocator,HsAllocFunc,HsFreeFunc	proc hs_set_misc_allocator(alloc_func: HsAllocFunc; free_func: HsFreeFunc): HsError		68
+nim	hs_set_scratch_allocator	hyperscan/bindings.html#hs_set_scratch_allocator,HsAllocFunc,HsFreeFunc	proc hs_set_scratch_allocator(alloc_func: HsAllocFunc; free_func: HsFreeFunc): HsError		70
+nim	hs_set_stream_allocator	hyperscan/bindings.html#hs_set_stream_allocator,HsAllocFunc,HsFreeFunc	proc hs_set_stream_allocator(alloc_func: HsAllocFunc; free_func: HsFreeFunc): HsError		72
+nim	hs_version	hyperscan/bindings.html#hs_version	proc hs_version(): cstring		74
+nim	hs_valid_platform	hyperscan/bindings.html#hs_valid_platform	proc hs_valid_platform(): HsError		75
+nim	HsCompileError	hyperscan/bindings.html#HsCompileError	object HsCompileError		85
+nim	HsCompileErrorPtr	hyperscan/bindings.html#HsCompileErrorPtr	type HsCompileErrorPtr		88
+nim	HsPlatformInfo	hyperscan/bindings.html#HsPlatformInfo	object HsPlatformInfo		91
+nim	HsPlatformInfoPtr	hyperscan/bindings.html#HsPlatformInfoPtr	type HsPlatformInfoPtr		96
+nim	HsExprInfo	hyperscan/bindings.html#HsExprInfo	object HsExprInfo		99
+nim	HsExprInfoPtr	hyperscan/bindings.html#HsExprInfoPtr	type HsExprInfoPtr		105
+nim	HsExprExt	hyperscan/bindings.html#HsExprExt	object HsExprExt		108
+nim	HsExprExtPtr	hyperscan/bindings.html#HsExprExtPtr	type HsExprExtPtr		115
+nim	HS_EXT_FLAG_MIN_OFFSET	hyperscan/bindings.html#HS_EXT_FLAG_MIN_OFFSET	const HS_EXT_FLAG_MIN_OFFSET		122
+nim	HS_EXT_FLAG_MAX_OFFSET	hyperscan/bindings.html#HS_EXT_FLAG_MAX_OFFSET	const HS_EXT_FLAG_MAX_OFFSET		123
+nim	HS_EXT_FLAG_MIN_LENGTH	hyperscan/bindings.html#HS_EXT_FLAG_MIN_LENGTH	const HS_EXT_FLAG_MIN_LENGTH		124
+nim	HS_EXT_FLAG_EDIT_DISTANCE	hyperscan/bindings.html#HS_EXT_FLAG_EDIT_DISTANCE	const HS_EXT_FLAG_EDIT_DISTANCE		125
+nim	HS_EXT_FLAG_HAMMING_DISTANCE	hyperscan/bindings.html#HS_EXT_FLAG_HAMMING_DISTANCE	const HS_EXT_FLAG_HAMMING_DISTANCE		126
+nim	HS_FLAG_CASELESS	hyperscan/bindings.html#HS_FLAG_CASELESS	const HS_FLAG_CASELESS		128
+nim	HS_FLAG_DOTALL	hyperscan/bindings.html#HS_FLAG_DOTALL	const HS_FLAG_DOTALL		129
+nim	HS_FLAG_MULTILINE	hyperscan/bindings.html#HS_FLAG_MULTILINE	const HS_FLAG_MULTILINE		130
+nim	HS_FLAG_SINGLEMATCH	hyperscan/bindings.html#HS_FLAG_SINGLEMATCH	const HS_FLAG_SINGLEMATCH		131
+nim	HS_FLAG_ALLOWEMPTY	hyperscan/bindings.html#HS_FLAG_ALLOWEMPTY	const HS_FLAG_ALLOWEMPTY		132
+nim	HS_FLAG_UTF8	hyperscan/bindings.html#HS_FLAG_UTF8	const HS_FLAG_UTF8		133
+nim	HS_FLAG_UCP	hyperscan/bindings.html#HS_FLAG_UCP	const HS_FLAG_UCP		134
+nim	HS_FLAG_PREFILTER	hyperscan/bindings.html#HS_FLAG_PREFILTER	const HS_FLAG_PREFILTER		135
+nim	HS_FLAG_SOM_LEFTMOST	hyperscan/bindings.html#HS_FLAG_SOM_LEFTMOST	const HS_FLAG_SOM_LEFTMOST		136
+nim	HS_FLAG_COMBINATION	hyperscan/bindings.html#HS_FLAG_COMBINATION	const HS_FLAG_COMBINATION		137
+nim	HS_FLAG_QUIET	hyperscan/bindings.html#HS_FLAG_QUIET	const HS_FLAG_QUIET		138
+nim	HS_CPU_FEATURES_AVX2	hyperscan/bindings.html#HS_CPU_FEATURES_AVX2	const HS_CPU_FEATURES_AVX2		140
+nim	HS_CPU_FEATURES_AVX512	hyperscan/bindings.html#HS_CPU_FEATURES_AVX512	const HS_CPU_FEATURES_AVX512		141
+nim	HS_CPU_FEATURES_AVX512VBMI	hyperscan/bindings.html#HS_CPU_FEATURES_AVX512VBMI	const HS_CPU_FEATURES_AVX512VBMI		142
+nim	HS_TUNE_FAMILY_GENERIC	hyperscan/bindings.html#HS_TUNE_FAMILY_GENERIC	const HS_TUNE_FAMILY_GENERIC		144
+nim	HS_TUNE_FAMILY_SNB	hyperscan/bindings.html#HS_TUNE_FAMILY_SNB	const HS_TUNE_FAMILY_SNB		145
+nim	HS_TUNE_FAMILY_IVB	hyperscan/bindings.html#HS_TUNE_FAMILY_IVB	const HS_TUNE_FAMILY_IVB		146
+nim	HS_TUNE_FAMILY_HSW	hyperscan/bindings.html#HS_TUNE_FAMILY_HSW	const HS_TUNE_FAMILY_HSW		147
+nim	HS_TUNE_FAMILY_SLM	hyperscan/bindings.html#HS_TUNE_FAMILY_SLM	const HS_TUNE_FAMILY_SLM		148
+nim	HS_TUNE_FAMILY_BDW	hyperscan/bindings.html#HS_TUNE_FAMILY_BDW	const HS_TUNE_FAMILY_BDW		149
+nim	HS_TUNE_FAMILY_SKL	hyperscan/bindings.html#HS_TUNE_FAMILY_SKL	const HS_TUNE_FAMILY_SKL		150
+nim	HS_TUNE_FAMILY_SKX	hyperscan/bindings.html#HS_TUNE_FAMILY_SKX	const HS_TUNE_FAMILY_SKX		151
+nim	HS_TUNE_FAMILY_GLM	hyperscan/bindings.html#HS_TUNE_FAMILY_GLM	const HS_TUNE_FAMILY_GLM		152
+nim	HS_TUNE_FAMILY_ICL	hyperscan/bindings.html#HS_TUNE_FAMILY_ICL	const HS_TUNE_FAMILY_ICL		153
+nim	HS_TUNE_FAMILY_ICX	hyperscan/bindings.html#HS_TUNE_FAMILY_ICX	const HS_TUNE_FAMILY_ICX		154
+nim	HS_MODE_BLOCK	hyperscan/bindings.html#HS_MODE_BLOCK	const HS_MODE_BLOCK		156
+nim	HS_MODE_NOSTREAM	hyperscan/bindings.html#HS_MODE_NOSTREAM	const HS_MODE_NOSTREAM		157
+nim	HS_MODE_STREAM	hyperscan/bindings.html#HS_MODE_STREAM	const HS_MODE_STREAM		158
+nim	HS_MODE_VECTORED	hyperscan/bindings.html#HS_MODE_VECTORED	const HS_MODE_VECTORED		159
+nim	HS_MODE_SOM_HORIZON_LARGE	hyperscan/bindings.html#HS_MODE_SOM_HORIZON_LARGE	const HS_MODE_SOM_HORIZON_LARGE		160
+nim	HS_MODE_SOM_HORIZON_MEDIUM	hyperscan/bindings.html#HS_MODE_SOM_HORIZON_MEDIUM	const HS_MODE_SOM_HORIZON_MEDIUM		161
+nim	HS_MODE_SOM_HORIZON_SMALL	hyperscan/bindings.html#HS_MODE_SOM_HORIZON_SMALL	const HS_MODE_SOM_HORIZON_SMALL		162
+nim	hs_compile	hyperscan/bindings.html#hs_compile,cstring,cuint,cuint,HsPlatformInfoPtr,ptr.HsDatabasePtr,ptr.HsCompileErrorPtr	proc hs_compile(expression: cstring; flags: cuint; mode: cuint;\n           platform: HsPlatformInfoPtr; db: ptr HsDatabasePtr;\n           error: ptr HsCompileErrorPtr): HsError		170
+nim	hs_compile_multi	hyperscan/bindings.html#hs_compile_multi,ptr.cstring,ptr.cuint,ptr.cuint,cuint,cuint,HsPlatformInfoPtr,ptr.HsDatabasePtr,ptr.HsCompileErrorPtr	proc hs_compile_multi(expressions: ptr cstring; flags: ptr cuint; ids: ptr cuint;\n                 elements: cuint; mode: cuint; platform: HsPlatformInfoPtr;\n                 db: ptr HsDatabasePtr; error: ptr HsCompileErrorPtr): HsError		175
+nim	hs_compile_ext_multi	hyperscan/bindings.html#hs_compile_ext_multi,ptr.cstring,ptr.cuint,ptr.cuint,ptr.ptr.HsExprExt,cuint,cuint,HsPlatformInfoPtr,ptr.HsDatabasePtr,ptr.HsCompileErrorPtr	proc hs_compile_ext_multi(expressions: ptr cstring; flags: ptr cuint; ids: ptr cuint;\n                     ext: ptr ptr HsExprExt; elements: cuint; mode: cuint;\n                     platform: HsPlatformInfoPtr; db: ptr HsDatabasePtr;\n                     error: ptr HsCompileErrorPtr): HsError		181
+nim	hs_compile_lit	hyperscan/bindings.html#hs_compile_lit,cstring,cuint,csize_t,cuint,HsPlatformInfoPtr,ptr.HsDatabasePtr,ptr.HsCompileErrorPtr	proc hs_compile_lit(expression: cstring; flags: cuint; len: csize_t; mode: cuint;\n               platform: HsPlatformInfoPtr; db: ptr HsDatabasePtr;\n               error: ptr HsCompileErrorPtr): HsError		189
+nim	hs_compile_lit_multi	hyperscan/bindings.html#hs_compile_lit_multi,ptr.cstring,ptr.cuint,ptr.cuint,ptr.csize_t,cuint,cuint,HsPlatformInfoPtr,ptr.HsDatabasePtr,ptr.HsCompileErrorPtr	proc hs_compile_lit_multi(expressions: ptr cstring; flags: ptr cuint; ids: ptr cuint;\n                     lens: ptr csize_t; elements: cuint; mode: cuint;\n                     platform: HsPlatformInfoPtr; db: ptr HsDatabasePtr;\n                     error: ptr HsCompileErrorPtr): HsError		194
+nim	hs_free_compile_error	hyperscan/bindings.html#hs_free_compile_error,HsCompileErrorPtr	proc hs_free_compile_error(error: HsCompileErrorPtr): HsError		201
+nim	hs_expression_info	hyperscan/bindings.html#hs_expression_info,cstring,cuint,ptr.HsExprInfoPtr,ptr.HsCompileErrorPtr	proc hs_expression_info(expression: cstring; flags: cuint; info: ptr HsExprInfoPtr;\n                   error: ptr HsCompileErrorPtr): HsError		203
+nim	hs_expression_ext_info	hyperscan/bindings.html#hs_expression_ext_info,cstring,cuint,HsExprExtPtr,ptr.HsExprInfoPtr,ptr.HsCompileErrorPtr	proc hs_expression_ext_info(expression: cstring; flags: cuint; ext: HsExprExtPtr;\n                       info: ptr HsExprInfoPtr; error: ptr HsCompileErrorPtr): HsError		207
+nim	hs_populate_platform	hyperscan/bindings.html#hs_populate_platform,HsPlatformInfoPtr	proc hs_populate_platform(platform: HsPlatformInfoPtr): HsError		212
+nim	MatchEventHandler	hyperscan/bindings.html#MatchEventHandler	type MatchEventHandler		221
+nim	HsStream	hyperscan/bindings.html#HsStream	object HsStream		230
+nim	HsStreamPtr	hyperscan/bindings.html#HsStreamPtr	type HsStreamPtr		231
+nim	HsScratch	hyperscan/bindings.html#HsScratch	object HsScratch		234
+nim	HsScratchPtr	hyperscan/bindings.html#HsScratchPtr	type HsScratchPtr		235
+nim	HS_OFFSET_PAST_HORIZON	hyperscan/bindings.html#HS_OFFSET_PAST_HORIZON	const HS_OFFSET_PAST_HORIZON		242
+nim	hs_open_stream	hyperscan/bindings.html#hs_open_stream,HsDatabasePtr,cuint,ptr.HsStreamPtr	proc hs_open_stream(db: HsDatabasePtr; flags: cuint; stream: ptr HsStreamPtr): HsError		250
+nim	hs_scan_stream	hyperscan/bindings.html#hs_scan_stream,HsStreamPtr,cstring,cuint,cuint,HsScratchPtr,MatchEventHandler,pointer	proc hs_scan_stream(id: HsStreamPtr; data: cstring; length: cuint; flags: cuint;\n               scratch: HsScratchPtr; onEvent: MatchEventHandler; ctxt: pointer): HsError		253
+nim	hs_close_stream	hyperscan/bindings.html#hs_close_stream,HsStreamPtr,HsScratchPtr,MatchEventHandler,pointer	proc hs_close_stream(id: HsStreamPtr; scratch: HsScratchPtr;\n                onEvent: MatchEventHandler; ctxt: pointer): HsError		259
+nim	hs_reset_stream	hyperscan/bindings.html#hs_reset_stream,HsStreamPtr,cuint,HsScratchPtr,MatchEventHandler,pointer	proc hs_reset_stream(id: HsStreamPtr; flags: cuint; scratch: HsScratchPtr;\n                onEvent: MatchEventHandler; context: pointer): HsError		264
+nim	hs_copy_stream	hyperscan/bindings.html#hs_copy_stream,ptr.HsStreamPtr,HsStreamPtr	proc hs_copy_stream(to_id: ptr HsStreamPtr; from_id: HsStreamPtr): HsError		269
+nim	hs_reset_and_copy_stream	hyperscan/bindings.html#hs_reset_and_copy_stream,HsStreamPtr,HsStreamPtr,HsScratchPtr,MatchEventHandler,pointer	proc hs_reset_and_copy_stream(to_id: HsStreamPtr; from_id: HsStreamPtr;\n                         scratch: HsScratchPtr; onEvent: MatchEventHandler;\n                         context: pointer): HsError		272
+nim	hs_compress_stream	hyperscan/bindings.html#hs_compress_stream,HsStreamPtr,ptr.UncheckedArray[byte],csize_t,ptr.csize_t	proc hs_compress_stream(stream: HsStreamPtr; buf: ptr UncheckedArray[byte];\n                   buf_space: csize_t; used_space: ptr csize_t): HsError		278
+nim	hs_expand_stream	hyperscan/bindings.html#hs_expand_stream,HsDatabasePtr,ptr.HsStreamPtr,ptr.UncheckedArray[byte],csize_t	proc hs_expand_stream(db: HsDatabasePtr; stream: ptr HsStreamPtr;\n                 buf: ptr UncheckedArray[byte]; buf_size: csize_t): HsError		283
+nim	hs_reset_and_expand_stream	hyperscan/bindings.html#hs_reset_and_expand_stream,HsStreamPtr,ptr.UncheckedArray[byte],csize_t,HsScratchPtr,MatchEventHandler,pointer	proc hs_reset_and_expand_stream(to_stream: HsStreamPtr;\n                           buf: ptr UncheckedArray[byte]; buf_size: csize_t;\n                           scratch: HsScratchPtr; onEvent: MatchEventHandler;\n                           context: pointer): HsError		288
+nim	hs_scan	hyperscan/bindings.html#hs_scan,HsDatabasePtr,cstring,cuint,cuint,HsScratchPtr,MatchEventHandler,pointer	proc hs_scan(db: HsDatabasePtr; data: cstring; length: cuint; flags: cuint;\n        scratch: HsScratchPtr; onEvent: MatchEventHandler; context: pointer): HsError		295
+nim	hs_scan_vector	hyperscan/bindings.html#hs_scan_vector,HsDatabasePtr,ptr.cstring,ptr.cuint,cuint,cuint,HsScratchPtr,MatchEventHandler,pointer	proc hs_scan_vector(db: HsDatabasePtr; data: ptr cstring; length: ptr cuint;\n               count: cuint; flags: cuint; scratch: HsScratchPtr;\n               onEvent: MatchEventHandler; context: pointer): HsError		301
+nim	hs_alloc_scratch	hyperscan/bindings.html#hs_alloc_scratch,HsDatabasePtr,ptr.HsScratchPtr	proc hs_alloc_scratch(db: HsDatabasePtr; scratch: ptr HsScratchPtr): HsError		309
+nim	hs_clone_scratch	hyperscan/bindings.html#hs_clone_scratch,HsScratchPtr,ptr.HsScratchPtr	proc hs_clone_scratch(src: HsScratchPtr; dest: ptr HsScratchPtr): HsError		312
+nim	hs_scratch_size	hyperscan/bindings.html#hs_scratch_size,HsScratchPtr,ptr.csize_t	proc hs_scratch_size(scratch: HsScratchPtr; scratch_size: ptr csize_t): HsError		315
+nim	hs_free_scratch	hyperscan/bindings.html#hs_free_scratch,HsScratchPtr	proc hs_free_scratch(scratch: HsScratchPtr): HsError		318
