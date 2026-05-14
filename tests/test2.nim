@@ -325,3 +325,119 @@ test "high-level API runnable example":
   discard db2.scan(data) do (id: cuint, fromOffset, toOffset: culonglong) -> bool:
     echo "Match found in deserialized DB! ID: ", id, " From: ", fromOffset, " To: ", toOffset
     return true
+
+suite "High-Level - Regex Patterns":
+
+  test "simple regex pattern matches":
+    let db = compile("foo")
+    var matched = false
+    discard db.scan("foo bar baz") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with quantifiers matches correctly":
+    let db = compile("fo+")
+    var matched = false
+    discard db.scan("foooo bar baz") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with alternation matches one of the patterns":
+    let db = compile("foo|bar|baz")
+    var ids: seq[cuint]
+    discard db.scan("bar") do(id: cuint, f, t: culonglong) -> bool:
+      ids.add(id)
+      return true
+    check ids.len == 1
+
+  test "regex with anchors matches at start of string":
+    let db = compile("^foo")
+    var matched = false
+    discard db.scan("foo bar") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with anchors does not match in the middle of string":
+    let db = compile("^foo")
+    var matched = false
+    discard db.scan("bar foo") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check not matched
+
+  test "regex with character classes matches correctly":
+    let db = compile("[a-z]+")
+    var matched = false
+    discard db.scan("123abc456") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with negated character classes does not match excluded characters":
+    let db = compile("[^a-z]+")
+    var matched = false
+    discard db.scan("abc123") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with groups captures correctly":
+    let db = compile("(foo)(bar)")
+    var matched = false
+    discard db.scan("foobar") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with escaped characters matches correctly":
+    let db = compile("\\.\\*\\?")
+    var matched = false
+    discard db.scan(".*?") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with unicode characters matches correctly":
+    let db = compile("你好")
+    var matched = false
+    discard db.scan("你好世界") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with case-insensitive flag matches regardless of case":
+    let db = compile("foo", HS_FLAG_CASELESS)
+    var matched = false
+    discard db.scan("FOO") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with multiline flag matches across lines":
+    let db = compile("^foo", HS_FLAG_MULTILINE)
+    var matched = false
+    discard db.scan("bar\nfoo") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with dotall flag matches newlines":
+    let db = compile("foo.bar", HS_FLAG_DOTALL)
+    var matched = false
+    discard db.scan("foo\nbar") do(id: cuint, f, t: culonglong) -> bool:
+      matched = true
+      return true
+    check matched
+
+  test "regex with invalid pattern raises HsException":
+    expect HsException:
+      discard compile("foo(")
+
+  test "regex with invalid pattern exception has compiler error code":
+    try:
+      discard compile("foo(")
+    except HsException as e:
+      check e.code == HS_COMPILER_ERROR
