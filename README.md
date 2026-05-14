@@ -1,27 +1,99 @@
 <p align="center">
-  <img src="https://github.com/openpeeps/PKG/blob/main/.github/logo.png" width="90px"><br>
-  OpenPeeps repository template for developing libraries,<br>projects and other cool things. 👑 Written in Nim language
+  Nim bindings for Intel's Hyperscan<br>
+  Regex matching library
 </p>
 
 <p align="center">
-  <code>nimble install {PKG}</code>
+  <code>nimble install hyperscan</code>
 </p>
 
 <p align="center">
-  <a href="https://openpeeps.github.io/{pkg}">API reference</a><br>
-  <img src="https://github.com/openpeeps/pistachio/workflows/test/badge.svg" alt="Github Actions">  <img src="https://github.com/openpeeps/pistachio/workflows/docs/badge.svg" alt="Github Actions">
+  <a href="https://openpeeps.github.io/hyperscan">API reference</a><br>
+  <img src="https://github.com/openpeeps/hyperscan/workflows/test/badge.svg" alt="Github Actions">  <img src="https://github.com/openpeeps/hyperscan/workflows/docs/badge.svg" alt="Github Actions">
 </p>
 
-## 😍 Key Features
-- [x] Open Source | `MIT` License
-- [x] Written in Nim language
+## About Intel's Hyperscan
+Hyperscan is a high-performance regular expression matching library. It is designed for applications that require fast and efficient pattern matching, such as network security, data mining, and bioinformatics. Check out the [official repository](https://github.com/intel/hyperscan)
+
+This nim package provides:
+- Low-level C-style bindings to the Hyperscan library
+- A high-level, idiomatic Nim API for easier usage
 
 ## Examples
-...
+
+Here is an example using the high-level API:
+```nim
+import hyperscan
+
+# Compile a pattern into a database
+let db = compile("foo", HS_FLAG_CASELESS)
+
+# Scan some data
+let data = "Hello foo world"
+discard db.scan(data) do (id: cuint, fromOffset, toOffset: culonglong) -> bool:
+  echo "Match found! ID: ", id, " From: ", fromOffset, " To: ", toOffset
+  return true  # Continue scanning
+
+# Serialize the database
+let serializedDb = db.serialize()
+echo "Serialized database size: ", serializedDb.len
+
+# Deserialize the database
+let db2 = deserialize(serializedDb)
+
+# Scan again with the deserialized database
+discard db2.scan(data) do (id: cuint, fromOffset, toOffset: culonglong) -> bool:
+  echo "Match found in deserialized DB! ID: ", id, " From: ", fromOffset, " To: ", toOffset
+  return true
+```
+
+Here is an example using the low-level API to compile a pattern, scan some data, and handle matches:
+```nim
+import hyperscan/bindings
+
+# Define a match event handler
+proc onMatch(id: cuint, fromOffset, toOffset: culonglong, flags: cuint, context: pointer): cint {.cdecl.} =
+  echo "Match found! ID: ", id, " From: ", fromOffset, " To: ", toOffset
+  return 0
+
+# Compile a pattern
+var db: HsDatabasePtr = nil
+var err: HsCompileErrorPtr = nil
+let pattern = "foo"
+let compileResult = hs_compile(pattern, HS_FLAG_CASELESS, HS_MODE_BLOCK, nil, addr db, addr err)
+
+if compileResult == HS_SUCCESS:
+  echo "Pattern compiled successfully!"
+else:
+  echo "Failed to compile pattern: ", err.message
+  quit(1)
+
+# Allocate scratch space
+var scratch: HsScratchPtr = nil
+let scratchResult = hs_alloc_scratch(db, addr scratch)
+
+if scratchResult != HS_SUCCESS:
+  echo "Failed to allocate scratch space!"
+  discard hs_free_database(db)
+  quit(1)
+
+# Scan data
+let data = "Hello foo world"
+let scanResult = hs_scan(db, data, cuint(len(data)), 0.cuint, scratch, onMatch, nil)
+
+if scanResult == HS_SUCCESS:
+  echo "Scan completed successfully!"
+else:
+  echo "Scan failed!"
+
+# Clean up
+discard hs_free_scratch(scratch)
+discard hs_free_database(db)
+```
 
 ### ❤ Contributions & Support
-- 🐛 Found a bug? [Create a new Issue](https://github.com/openpeeps/pistachio/issues)
-- 👋 Wanna help? [Fork it!](https://github.com/openpeeps/pistachio/fork)
+- 🐛 Found a bug? [Create a new Issue](https://github.com/openpeeps/hyperscan/issues)
+- 👋 Wanna help? [Fork it!](https://github.com/openpeeps/hyperscan/fork)
 - 😎 [Get €20 in cloud credits from Hetzner](https://hetzner.cloud/?ref=Hm0mYGM9NxZ4)
 
 ### 🎩 License
