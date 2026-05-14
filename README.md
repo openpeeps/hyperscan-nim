@@ -13,9 +13,11 @@
 </p>
 
 ## About Intel's Hyperscan
-Hyperscan is a high-performance regular expression matching library. It is designed for applications that require fast and efficient pattern matching, such as network security, data mining, and bioinformatics. Check out the [official repository](https://github.com/intel/hyperscan)
+Hyperscan is a high-performance regular expression matching library capable of scanning data at high speeds. It is used as a critical engine within network security, and Deep Packet Inspection (DPI) applications to search for large sets of patterns simultaneously across streaming data. [Readh the Introduction to Hyperscan](https://www.intel.com/content/www/us/en/developer/articles/technical/introduction-to-hyperscan.html)
 
-This nim package provides:
+Check out the [official repository](https://github.com/intel/hyperscan)
+
+This Nim package provides:
 - Low-level C-style bindings to the Hyperscan library
 - A high-level, idiomatic Nim API for easier usage
 
