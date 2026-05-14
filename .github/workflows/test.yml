@@ -27,7 +27,7 @@ jobs:
 
       - name: Clone Hyperscan
         run: |
-          git clone git://github.com/intel/hyperscan
+          git clone https://github.com/intel/hyperscan
           cd hyperscan
           mkdir build && cd build
           cmake ..
