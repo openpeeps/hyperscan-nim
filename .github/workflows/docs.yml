@@ -3,8 +3,8 @@ on:
   push:
     tags:
       - '*.*.*'
-    branches:
-      - main
+    # branches:
+    #   - main
   workflow_dispatch:
 env:
   nim-version: 'stable'

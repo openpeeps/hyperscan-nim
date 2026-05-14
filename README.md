@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://openpeeps.github.io/hyperscan-nim">API reference</a><br>
-  <img src="https://github.com/openpeeps/hyperscan/workflows/test/badge.svg" alt="Github Actions">  <img src="https://github.com/openpeeps/hyperscan/workflows/docs/badge.svg" alt="Github Actions">
+  <img src="https://github.com/openpeeps/hyperscan-nim/workflows/test/badge.svg" alt="Github Actions">  <img src="https://github.com/openpeeps/hyperscan-nim/workflows/docs/badge.svg" alt="Github Actions">
 </p>
 
 ## About Intel's Hyperscan
